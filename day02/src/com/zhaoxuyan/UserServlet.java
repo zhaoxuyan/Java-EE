@@ -1,10 +1,9 @@
 package com.zhaoxuyan;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.*;
 import java.io.IOException;
 import java.io.PrintWriter;
 
@@ -54,8 +53,40 @@ public class UserServlet extends HttpServlet {
         System.out.println("用户名：" + username);
         System.out.println("密码：" + password);
 
+
         // 用户名密码验证
         if (username.equals("123") && password.equals("123")) {
+            // 获取是否保存用户名和密码
+            String daylength = request.getParameter("daylength");
+            if (daylength != null && !daylength.equals("-1")) {
+                // 保存
+                int day = Integer.parseInt(daylength);
+                Cookie cname = new Cookie("username", username);
+                Cookie cpwd = new Cookie("userpwd", password);
+                // 设置保存时间
+                cname.setMaxAge(day * 24 * 3600);
+                cpwd.setMaxAge(day * 24 * 3600);
+                // 添加到response
+                response.addCookie(cname);
+                response.addCookie(cpwd);
+
+            }
+            // 将用户名保存在session中
+            HttpSession session = request.getSession();
+            session.setAttribute("current_username", username);
+
+            request.setAttribute("username", username);
+
+            // 登录人数+1
+            ServletContext sc = this.getServletContext();
+            Integer count = (Integer) sc.getAttribute("count");
+            if (count != null) {
+                count++;
+            } else {
+                count = 1;
+            }
+            sc.setAttribute("count", count);
+
             // 跳转到成功页面
             // 响应重定向
 //            response.sendRedirect("success.jsp");

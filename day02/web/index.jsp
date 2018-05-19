@@ -6,11 +6,31 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%
+    // 获取全部cookie
+    Cookie[] cookie = request.getCookies();
+    String name = null, pwd = null;
+    // 遍历
+    for (Cookie c : cookie) {
+        if (c.getName().equals("username")) {
+            name = c.getValue();
+
+        }
+        if (c.getName().equals("userpwd")) {
+            pwd = c.getValue();
+        }
+    }
+    if (name != null && pwd != null) {
+        // get 提交
+        request.getRequestDispatcher("UserServlet?username=" + name + "&" + "userpwd=" + pwd)
+                .forward(request, response);
+    }
+%>
 <html>
-  <head>
+<head>
     <title>$Title$</title>
-  </head>
-  <body>
-  Hello Index.jsp
-  </body>
+</head>
+<body>
+网站首页
+</body>
 </html>
