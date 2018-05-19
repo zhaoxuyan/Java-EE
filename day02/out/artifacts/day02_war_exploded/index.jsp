@@ -7,7 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
-    // 获取全部cookie
+    // 获取全部cookie,保存cookie后，访问首页时自动登录（3，7，30天）
     Cookie[] cookie = request.getCookies();
     String name = null, pwd = null;
     // 遍历

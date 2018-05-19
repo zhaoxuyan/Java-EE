@@ -36,17 +36,6 @@ public class UserServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // 处理响应的中文乱码
-        request.setCharacterEncoding("utf-8");
-        response.setCharacterEncoding("utf-8");
-        response.setContentType("text/html;charset=utf-8");
-        PrintWriter out = response.getWriter();
-        out.println("<!DOCTYPE>");
-        out.println("<HTML>");
-        out.println("  <HEAD><TITLE>A Servlet</TITLE></HEAD>");
-        out.println("  <BODY>");
-
-        // add something
         // 获取输入的用户名和密码
         String username = request.getParameter("username");
         String password = request.getParameter("userpwd");
@@ -56,28 +45,31 @@ public class UserServlet extends HttpServlet {
 
         // 用户名密码验证
         if (username.equals("123") && password.equals("123")) {
-            // 获取是否保存用户名和密码
+            // 获取是否设置cookie来保存用户名和密码
             String daylength = request.getParameter("daylength");
+            // cookie的天数
             if (daylength != null && !daylength.equals("-1")) {
                 // 保存
                 int day = Integer.parseInt(daylength);
-                Cookie cname = new Cookie("username", username);
-                Cookie cpwd = new Cookie("userpwd", password);
+                Cookie cookie_name = new Cookie("username", username);
+                Cookie cookie_pwd = new Cookie("userpwd", password);
                 // 设置保存时间
-                cname.setMaxAge(day * 24 * 3600);
-                cpwd.setMaxAge(day * 24 * 3600);
-                // 添加到response
-                response.addCookie(cname);
-                response.addCookie(cpwd);
+                cookie_name.setMaxAge(day * 24 * 3600);
+                cookie_pwd.setMaxAge(day * 24 * 3600);
+                // 添加cookie到response
+                response.addCookie(cookie_name);
+                response.addCookie(cookie_pwd);
 
             }
-            // 将用户名保存在session中
+
+            // 将用户名保存在session中，在success.jsp中通过${current_username}使用
             HttpSession session = request.getSession();
             session.setAttribute("current_username", username);
 
+            // 请求时带一个参数:username，在success.jsp中通过${username}使用
             request.setAttribute("username", username);
 
-            // 登录人数+1
+            // 登录人数+1（通过ServletContext上下文实现）
             ServletContext sc = this.getServletContext();
             Integer count = (Integer) sc.getAttribute("count");
             if (count != null) {
@@ -100,10 +92,5 @@ public class UserServlet extends HttpServlet {
             request.getRequestDispatcher("fail.jsp").forward(request, response);
         }
 
-
-        out.println("  </BODY>");
-        out.println("</HTML>");
-        out.flush();
-        out.close();
     }
 }

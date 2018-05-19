@@ -34,8 +34,9 @@ public class LogoutServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // session失效
+        // 退出登录，使session失效
         request.getSession().invalidate();
+        // 退出登录后，返回登录界面
         response.sendRedirect("login.jsp");
     }
 }

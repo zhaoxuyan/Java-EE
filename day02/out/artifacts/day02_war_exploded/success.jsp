@@ -7,7 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
-    // 判断session是否有用户名
+    // 判断session是否有用户名，如果无此步骤，可绕过登录直接访问success.jsp
     String name = (String) session.getAttribute("current_username");
     if (name == null) {
         // 保存错误信息
