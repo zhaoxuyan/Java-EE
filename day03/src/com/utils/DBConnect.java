@@ -24,7 +24,9 @@ public class DBConnect {
         //STEP 3: Open a connection
         System.out.println("Connecting to a selected database...");
         Connection conn = getConnect();
+        System.out.println(conn);
         Statement stmt = conn.createStatement();
+        System.out.println(stmt);
     }
 
     public static Connection getConnect() throws ClassNotFoundException {
@@ -38,6 +40,60 @@ public class DBConnect {
             System.out.println("database connect failed...");
         }
         return conn;
+    }
+
+    /**
+     * 关闭连接
+     */
+    public static void close(ResultSet rs, PreparedStatement ps, Connection conn) {
+        if(rs != null) {
+            try {
+                rs.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        if(ps != null) {
+            try {
+                ps.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        if(conn != null) {
+            try {
+                conn.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    /**
+     * 关闭连接
+     */
+    public static void close(ResultSet rs, CallableStatement cs, Connection conn) {
+        if(rs != null) {
+            try {
+                rs.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        if(cs != null) {
+            try {
+                cs.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        if(conn != null) {
+            try {
+                conn.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
 //    private static void query(Statement stmt, String tableName) throws SQLException {

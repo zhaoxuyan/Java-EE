@@ -37,23 +37,24 @@
         <td>姓名</td>
         <td>性别</td>
         <td>年龄</td>
+        <td>操作</td>
     </tr>
     <%
-        for (Student s : list) {
+        if(list != null){
+            for(Student s : list){
     %>
     <tr>
-        <td><%=s.getId()%>
-        </td>
-        <td><%=s.getStuno()%>
-        </td>
-        <td><%=s.getStuname()%>
-        </td>
-        <td><%=s.getStusex()%>
-        </td>
-        <td><%=s.getStuyear()%>
+        <td><%=s.getId() %></td>
+        <td><%=s.getStuno() %></td>
+        <td><%=s.getStuname() %></td>
+        <td><%=s.getStusex() %></td>
+        <td><%=s.getStuyear() %></td>
+        <td><a href="StudentDelServlet?id=<%=s.getId() %>">删除</a>
+            <a href="">修改</a>
         </td>
     </tr>
     <%
+            }
         }
     %>
 </table>

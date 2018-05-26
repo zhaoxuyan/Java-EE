@@ -8,18 +8,20 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.DataOutput;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet(name = "StudentListServlet", urlPatterns = "/StudentListServlet")
-public class StudentListServlet extends HttpServlet {
+@WebServlet(name = "StudentDelServlet", urlPatterns = "/StudentDelServlet")
+public class StudentDelServlet extends HttpServlet {
     private StudentDao dao = new StudentDao();
+
     /**
      * Constructor of the object.
      */
-    public StudentListServlet()
+    public StudentDelServlet()
 
     {
         super();
@@ -42,26 +44,17 @@ public class StudentListServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-        List<Student> list = null;
         try {
-            list = dao.queryAll();
-        } catch (SQLException | ClassNotFoundException e) {
+            // 获取参数id 执行删除操作
+            String idstr = request.getParameter("id");
+            int id = Integer.parseInt(idstr);
+            dao.delById(id);
+            // 刷新页面 并 跳转回列表页面
+            List<Student> list = dao.queryAll();
+            request.setAttribute("students", list);
+            request.getRequestDispatcher("student_show.jsp").forward(request, response);
+        } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }
-
-        request.setAttribute("students", list);
-        request.getRequestDispatcher("student_show.jsp").forward(request,response);
-
-    }
-    protected List<Student> fakeData(){
-        List<Student> list = new ArrayList<>();
-        list.add(new Student(1,"stu001","赵绪言","男",21));
-        list.add(new Student(2,"stu002","张三","女",22));
-        list.add(new Student(3,"stu003","李四","男",31));
-        list.add(new Student(4,"stu004","王麻子","女",12));
-        list.add(new Student(5,"stu005","赵二狗","男",24));
-
-        return list;
     }
 }
