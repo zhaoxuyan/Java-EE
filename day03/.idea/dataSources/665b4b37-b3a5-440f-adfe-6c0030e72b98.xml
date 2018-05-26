@@ -10,188 +10,35 @@
     <schema id="4" parent="1" name="information_schema"/>
     <schema id="5" parent="1" name="mysql"/>
     <schema id="6" parent="1" name="performance_schema"/>
-    <schema id="7" parent="1" name="Sales">
-      <Visible>1</Visible>
-    </schema>
+    <schema id="7" parent="1" name="Sales"/>
     <schema id="8" parent="1" name="Server"/>
     <schema id="9" parent="1" name="ssc-demo"/>
     <schema id="10" parent="1" name="Student"/>
-    <table id="11" parent="7" name="Category"/>
-    <table id="12" parent="7" name="Client"/>
-    <table id="13" parent="7" name="Product"/>
-    <table id="14" parent="7" name="Sales"/>
-    <table id="15" parent="7" name="SalesTicket"/>
-    <table id="16" parent="7" name="Worker"/>
-    <column id="17" parent="11" name="CategoryNo">
+    <table id="11" parent="2" name="student"/>
+    <column id="12" parent="11" name="id">
       <Position>1</Position>
-      <DataType>char(10)|0</DataType>
+      <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="18" parent="11" name="CatagoryName">
+    <column id="13" parent="11" name="stuno">
       <Position>2</Position>
-      <DataType>char(20)|0</DataType>
+      <DataType>varchar(20)|0</DataType>
     </column>
-    <key id="19" parent="11" name="PRIMARY">
-      <NameSurrogate>1</NameSurrogate>
-      <ColNames>CategoryNo</ColNames>
-      <Primary>1</Primary>
-    </key>
-    <column id="20" parent="12" name="ClientNo">
-      <Position>1</Position>
-      <DataType>char(10)|0</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="21" parent="12" name="CategoryNo">
-      <Position>2</Position>
-      <DataType>char(10)|0</DataType>
-    </column>
-    <column id="22" parent="12" name="ClientName">
+    <column id="14" parent="11" name="stuname">
       <Position>3</Position>
-      <DataType>char(30)|0</DataType>
+      <DataType>varchar(20)|0</DataType>
     </column>
-    <column id="23" parent="12" name="Address">
+    <column id="15" parent="11" name="stusex">
       <Position>4</Position>
-      <DataType>char(30)|0</DataType>
+      <DataType>varchar(20)|0</DataType>
     </column>
-    <column id="24" parent="12" name="Tel">
+    <column id="16" parent="11" name="year">
       <Position>5</Position>
-      <DataType>char(20)|0</DataType>
+      <DataType>int(11)|0</DataType>
     </column>
-    <index id="25" parent="12" name="FK_Reference_1">
-      <ColNames>CategoryNo</ColNames>
-    </index>
-    <key id="26" parent="12" name="PRIMARY">
+    <key id="17" parent="11" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
-      <ColNames>ClientNo</ColNames>
-      <Primary>1</Primary>
-    </key>
-    <foreign-key id="27" parent="12" name="FK_Reference_1">
-      <ColNames>CategoryNo</ColNames>
-      <RefSchemaName>Sales</RefSchemaName>
-      <RefTableName>Category</RefTableName>
-      <RefColNames>CategoryNo</RefColNames>
-    </foreign-key>
-    <column id="28" parent="13" name="ProductNo">
-      <Position>1</Position>
-      <DataType>char(10)|0</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="29" parent="13" name="ProductName">
-      <Position>2</Position>
-      <DataType>char(20)|0</DataType>
-    </column>
-    <column id="30" parent="13" name="SinglePrice">
-      <Position>3</Position>
-      <DataType>char(10)|0</DataType>
-    </column>
-    <column id="31" parent="13" name="StoreNumber">
-      <Position>4</Position>
-      <DataType>char(10)|0</DataType>
-    </column>
-    <key id="32" parent="13" name="PRIMARY">
-      <NameSurrogate>1</NameSurrogate>
-      <ColNames>ProductNo</ColNames>
-      <Primary>1</Primary>
-    </key>
-    <column id="33" parent="14" name="SalesTicketNo">
-      <Position>1</Position>
-      <DataType>char(10)|0</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="34" parent="14" name="ProductNo">
-      <Position>2</Position>
-      <DataType>char(10)|0</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="35" parent="14" name="Sum">
-      <Position>3</Position>
-      <DataType>char(10)|0</DataType>
-    </column>
-    <column id="36" parent="14" name="Price">
-      <Position>4</Position>
-      <DataType>char(10)|0</DataType>
-    </column>
-    <index id="37" parent="14" name="FK_Reference_3">
-      <ColNames>ProductNo</ColNames>
-    </index>
-    <key id="38" parent="14" name="PRIMARY">
-      <NameSurrogate>1</NameSurrogate>
-      <ColNames>SalesTicketNo
-ProductNo</ColNames>
-      <Primary>1</Primary>
-    </key>
-    <foreign-key id="39" parent="14" name="FK_Reference_2">
-      <ColNames>SalesTicketNo</ColNames>
-      <RefSchemaName>sales</RefSchemaName>
-      <RefTableName>SalesTicket</RefTableName>
-      <RefColNames>SalesTicketNo</RefColNames>
-    </foreign-key>
-    <foreign-key id="40" parent="14" name="FK_Reference_3">
-      <ColNames>ProductNo</ColNames>
-      <RefSchemaName>sales</RefSchemaName>
-      <RefTableName>Product</RefTableName>
-      <RefColNames>ProductNo</RefColNames>
-    </foreign-key>
-    <column id="41" parent="15" name="SalesTicketNo">
-      <Position>1</Position>
-      <DataType>char(10)|0</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="42" parent="15" name="ClientNo">
-      <Position>2</Position>
-      <DataType>char(10)|0</DataType>
-    </column>
-    <column id="43" parent="15" name="WorkerNo">
-      <Position>3</Position>
-      <DataType>char(10)|0</DataType>
-    </column>
-    <column id="44" parent="15" name="Date">
-      <Position>4</Position>
-      <DataType>date|0</DataType>
-    </column>
-    <index id="45" parent="15" name="FK_Reference_4">
-      <ColNames>ClientNo</ColNames>
-    </index>
-    <index id="46" parent="15" name="FK_Reference_5">
-      <ColNames>WorkerNo</ColNames>
-    </index>
-    <key id="47" parent="15" name="PRIMARY">
-      <NameSurrogate>1</NameSurrogate>
-      <ColNames>SalesTicketNo</ColNames>
-      <Primary>1</Primary>
-    </key>
-    <foreign-key id="48" parent="15" name="FK_Reference_4">
-      <ColNames>ClientNo</ColNames>
-      <RefSchemaName>sales</RefSchemaName>
-      <RefTableName>Client</RefTableName>
-      <RefColNames>ClientNo</RefColNames>
-    </foreign-key>
-    <foreign-key id="49" parent="15" name="FK_Reference_5">
-      <ColNames>WorkerNo</ColNames>
-      <RefSchemaName>sales</RefSchemaName>
-      <RefTableName>Worker</RefTableName>
-      <RefColNames>WorkerNo</RefColNames>
-    </foreign-key>
-    <column id="50" parent="16" name="WorkerNo">
-      <Position>1</Position>
-      <DataType>char(10)|0</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="51" parent="16" name="WorkerName">
-      <Position>2</Position>
-      <DataType>char(20)|0</DataType>
-    </column>
-    <column id="52" parent="16" name="Tel">
-      <Position>3</Position>
-      <DataType>char(20)|0</DataType>
-    </column>
-    <column id="53" parent="16" name="SalesMoney">
-      <Position>4</Position>
-      <DataType>char(20)|0</DataType>
-    </column>
-    <key id="54" parent="16" name="PRIMARY">
-      <NameSurrogate>1</NameSurrogate>
-      <ColNames>WorkerNo</ColNames>
+      <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
   </database-model>
