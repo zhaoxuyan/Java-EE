@@ -11,7 +11,7 @@
     <title>Title</title>
 </head>
 <body>
-<h2>修改学生信息</h2>
+<h1>修改学生信息</h1>
 <form action="StudentAlterServlet" method="post">
     <table>
         <%
@@ -28,6 +28,7 @@
         <tr><td>年龄</td>
             <td><input type="text" name="age" value="<%=s.getStuyear()%>" title=""></td></tr>
         <tr><td colspan="2">
+            <br>
             <input type="submit" value="提交"></td></tr>
     </table>
 </form>
