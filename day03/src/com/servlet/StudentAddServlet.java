@@ -1,27 +1,26 @@
 package com.servlet;
 
-import com.dao.StudentDao;
 import com.entity.Student;
+import com.dao.StudentDao;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.DataOutput;
 import java.io.IOException;
-import java.io.PrintWriter;
+
 import java.sql.SQLException;
 import java.util.List;
 
-@WebServlet(name = "StudentDelServlet", urlPatterns = "/StudentDelServlet")
-public class StudentDelServlet extends HttpServlet {
+@WebServlet(name = "StudentAddServlet", urlPatterns = "/StudentAddServlet")
+public class StudentAddServlet extends HttpServlet {
     private StudentDao dao = new StudentDao();
 
     /**
      * Constructor of the object.
      */
-    public StudentDelServlet()
+    public StudentAddServlet()
 
     {
         super();
@@ -44,17 +43,29 @@ public class StudentDelServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("utf-8");
+        //获取参数
+        String idstr = request.getParameter("id");
+        int id = Integer.parseInt(idstr);
+        String stuno = request.getParameter("stuno");
+        String stuname = request.getParameter("name");
+        String stusex = request.getParameter("gender");
+        String agestr = request.getParameter("age");
+        int year = Integer.parseInt(agestr);
+        //调用dao方法修改
         try {
-            // 获取参数id 执行删除操作
-            String idstr = request.getParameter("id");
-            int id = Integer.parseInt(idstr);
-            dao.delById(id);
-            // 刷新页面 并 跳转回列表页面
-            List<Student> list = dao.queryAll();
-            request.setAttribute("students", list);
-            request.getRequestDispatcher("student_show.jsp").forward(request, response);
-        } catch (ClassNotFoundException | SQLException e) {
+            dao.addstudent(id, stuno, stuname, stusex, year);
+        } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
+        List<Student> list = null;
+        try {
+            list = dao.queryAll();
+        } catch (SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        request.setAttribute("students", list);
+        //跳转回列表页面
+        request.getRequestDispatcher("student_show.jsp").forward(request, response);
     }
 }
