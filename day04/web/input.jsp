@@ -11,7 +11,8 @@
     <title>Title</title>
 </head>
 <body>
-<form action="show.jsp">
+<a href="ListServlet">查看列表</a><br>
+<form action="show.jsp" method="post">
     真实姓名：<input name="realname" title=""><br>
     身份证号：<input name="idno" title=""><br>
     性别：

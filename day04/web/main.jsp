@@ -25,6 +25,7 @@
     <%--tld形式--%>
     <%--<zxy:printRegAttr attr="uname"/>--%>
 
+    <%--EL表达式--%>
     <%--<span  style="color: red; ">${requestScope.uname}</span>--%>
     <span style="color: red; ">${uname}</span>
 </div>
