@@ -16,7 +16,7 @@
 
 ![](https://ws2.sinaimg.cn/large/006tNc79gy1fry1ypcsxlj318m19g10p.jpg)
 
-### Listener 将访问人数存入count.txt，实现访问人数递增
+### Listener 将访问人数存入`Java-EE/day04/out/artifacts/day04_war_exploded/count.txt`，实现访问人数递增
 
 ![](https://ws4.sinaimg.cn/large/006tNc79gy1fry1zpb0nfj31eo128dnh.jpg)
 
