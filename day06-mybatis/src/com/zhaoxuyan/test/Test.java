@@ -1,5 +1,6 @@
 package com.zhaoxuyan.test;
 
+import com.zhaoxuyan.entity.Student;
 import com.zhaoxuyan.mapper.StudentMapper;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -21,7 +22,14 @@ public class Test {
         SqlSession session = factory.openSession();
         //mybatis自动生成mapper代理对象
         StudentMapper sm = session.getMapper(StudentMapper.class);
-        System.out.println(sm.selectStuById(3));
+        System.out.println(sm.selectStuById(2));
+
+        Student student = sm.selectStuById(2);
+        System.out.println(student.getId() + " "
+                + student.getStuname() + " "
+                + student.getStuno() + " "
+                + student.getStusex() + " "
+                + student.getYear() + " ");
     }
 
 }

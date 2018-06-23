@@ -7,6 +7,10 @@ public class Student {
     private String stusex;
     private int year;
 
+    /**
+     * 默认构造函数 不加会报错
+     * Error instantiating class with invalid types () or values ()
+     */
     public Student(){
         super();
     }

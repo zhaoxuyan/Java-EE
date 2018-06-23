@@ -18,11 +18,11 @@
     </tr>
     <c:forEach items="${list}" var="a">
         <tr>
-            <td>${a.id}</td>
-            <td>${a.stuno}</td>
-            <td>${a.stuname}</td>
-            <td>${a.stusex}</td>
-            <td>${a.year}</td>
+            <td>${a.id }</td>
+            <td>${a.stuno }</td>
+            <td>${a.stuname }</td>
+            <td>${a.stusex }</td>
+            <td>${a.year }</td>
         </tr>
     </c:forEach>
 </table>

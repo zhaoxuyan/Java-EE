@@ -7,12 +7,16 @@ public class Student {
     private String stusex;
     private int year;
 
-    public Student(int id, String stuno, String stuname, String stusex, int stuyear) {
+    public Student(){
+        super();
+    }
+
+    public Student(int id, String stuno, String stuname, String stusex, int year) {
         this.id = id;
         this.stuno = stuno;
         this.stuname = stuname;
         this.stusex = stusex;
-        this.year = stuyear;
+        this.year = year;
     }
 
     public String getStuname() {

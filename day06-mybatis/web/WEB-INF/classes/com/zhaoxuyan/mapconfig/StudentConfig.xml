@@ -4,26 +4,26 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="entity.student">
     <select id="selectStuById" parameterType="int" resultType="com.zhaoxuyan.entity.Student">
-        select * from student where id=#{aaa}
-    </select>
+        SELECT *
+        FROM student
+        WHERE id = #{id}</select>
 
     <select id="selectByFirstName" parameterType="java.lang.String" resultType="com.zhaoxuyan.entity.Student">
-        select * from student where stuname like '${value}%'
-    </select>
+        SELECT *
+        FROM student
+        WHERE stuname LIKE '${value}%'</select>
 
     <insert id="addStudent" parameterType="com.zhaoxuyan.entity.Student">
-        insert into student values(#{id},#{stuno},#{stuname},#{stusex},#{year})
-    </insert>
+        INSERT INTO student VALUES (#{id}, #{stuno}, #{stuname}, #{stusex}, #{year})</insert>
 
     <delete id="deleteStudentById" parameterType="java.lang.Integer">
-        delete from student where id=#{id}
-    </delete>
+        DELETE FROM student
+        WHERE id = #{id}</delete>
 
     <update id="updateStudentById" parameterType="com.zhaoxuyan.entity.Student">
-        update student set stuno=#{stuno},stuname=#{stuname},stusex=#{stusex},yeaer=#{year} where id=#{id}
-    </update>
-
-
+        UPDATE student
+        SET stuno = #{stuno}, stuname = #{stuname}, stusex = #{stusex}, year = #{year}
+        WHERE id = #{id}</update>
 
 
 </mapper>
