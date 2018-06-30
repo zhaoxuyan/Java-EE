@@ -10,6 +10,7 @@ import java.util.ArrayList;
 @Controller
 public class StudentAnnotionController {
 
+
     @RequestMapping("/stus")
     public ModelAndView queryStuList(){
         ArrayList<Student> list = new ArrayList<>();
